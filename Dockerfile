@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian
 
 RUN apt update && apt upgrade -y
 
@@ -6,6 +6,7 @@ RUN apt install -y \
     apt-transport-https \
     lsb-release \
     ca-certificates \
+    less \
     wget \
     curl \
     apache2 \
@@ -30,24 +31,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && apt upgrade -y && apt install -
     php5.6-zip \
     php5.6-xdebug
 
-# PHP files should be handled by PHP, and should be preferred over any other file type
-ENV APACHE_CONFDIR /etc/apache2
-RUN { \
-        echo '<FilesMatch \.php$>'; \
-        echo '\tSetHandler application/x-httpd-php'; \
-        echo '</FilesMatch>'; \
-        echo; \
-        echo 'DirectoryIndex index.php index.html'; \
-        echo; \
-        echo '<Directory /var/www/>'; \
-        echo '\tOptions +Indexes'; \
-        echo '\tAllowOverride All'; \
-        echo '</Directory>'; \
-    } | tee "$APACHE_CONFDIR/conf-available/docker-php.conf" \
-    && a2enconf docker-php && a2enmod rewrite
+COPY conf/docker-php.conf /etc/apache2/conf-available/
+COPY conf/dir.conf /etc/apache2/mods-available/
+COPY conf/php5.6.conf /etc/apache2/mods-available/
+
+RUN a2enconf docker-php && a2enmod rewrite
 
 STOPSIGNAL WINCH
 WORKDIR /var/www/html
 
 EXPOSE 80
-CMD apachectl -D FOREGROUND
+CMD ["apachectl", "-D", "FOREGROUND"]
