@@ -18,13 +18,16 @@ in:
 	@docker compose exec -it web /bin/bash
 
 status:
-	@docker exec web sh -c "service apache2 status"
+	@docker compose exec web sh -c "service apache2 status"
 
 apache-status:
-	@docker exec web sh -c "service apache2 status"
+	@docker compose exec web sh -c "service apache2 status"
 
 apache-reload:
-	@docker exec web sh -c "service apache2 reload; service apache2 status"
+	@docker compose exec web sh -c "service apache2 reload; service apache2 status"
 
 apache-force-reload:
-	@docker exec web sh -c "service apache2 force-reload; service apache2 status"
+	@docker compose exec web sh -c "service apache2 force-reload; service apache2 status"
+
+test:
+	@docker compose exec web sh -c "curl http://localhost/"
