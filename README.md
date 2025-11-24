@@ -51,7 +51,7 @@ forked from [alcalbg/docker-php5.6-apache](https://github.com/alcalbg/docker-php
 
   - コンテナのビルド＆起動 `make up`
 
-    コンテナ名は未指定です。既存コンテナで `web` があれば `web-1` に、なければ `web` になります
+    コンテナ名は未指定です。イメージ名とサービス名 `web` から自動生成されます
 
   - コンテナ終了 `make down`
 
