@@ -17,7 +17,7 @@ forked from [alcalbg/docker-php5.6-apache](https://github.com/alcalbg/docker-php
 
 - 利用の便宜上、下記の更新をしました
 
-  - `docker-compose` と `make`の利用
+  - `docker compose` と `make`の利用
 
     コンテナの数はfork元と同様1つです
 
