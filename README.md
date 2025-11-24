@@ -1,6 +1,8 @@
 # docker-php5.6-apache2
 forked from [alcalbg/docker-php5.6-apache](https://github.com/alcalbg/docker-php5.6-apache)
 
+<a href="https://github.com/ec22s/docker-php5.6-apache2/actions/workflows/test.yml"><img src="https://github.com/ec22s/docker-php5.6-apache2/workflows/Test/badge.svg"></a>
+
 - 2025年11月、PHP5.6のWebアプリを動かす必要が出て作成しました
 
 - 動作確認環境
@@ -17,7 +19,7 @@ forked from [alcalbg/docker-php5.6-apache](https://github.com/alcalbg/docker-php
 
 - 利用の便宜上、下記の更新をしました
 
-  - `docker-compose` と `make`の利用
+  - `docker compose` と `make`の利用
 
     コンテナの数はfork元と同様1つです
 
@@ -49,7 +51,7 @@ forked from [alcalbg/docker-php5.6-apache](https://github.com/alcalbg/docker-php
 
   - コンテナのビルド＆起動 `make up`
 
-    コンテナ名を `web` としています. 競合する場合は適宜変更して下さい
+    コンテナ名は未指定です。既存コンテナで `web` があれば `web-1` に、なければ `web` になります
 
   - コンテナ終了 `make down`
 
