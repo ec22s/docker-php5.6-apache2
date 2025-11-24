@@ -28,3 +28,6 @@ apache-reload:
 
 apache-force-reload:
 	@docker exec web sh -c "service apache2 force-reload; service apache2 status"
+
+test:
+	@docker exec web sh -c "curl http://localhost/"
